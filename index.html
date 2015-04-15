@@ -33,21 +33,43 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Neighborhood Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blake's Neighborhood Map</title>
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <div id="header">
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">Blake's Neighborhood Map</h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="row">
+                    <h2>Search for POI's</h2>
+                </div>
+                <div class="row"></div>
+            </div>
+            <div class="col-sm-9 map-container">
+                <div id="map-canvas" data-bind="html: map"></div>
+            </div>
+        </div>
+    </div>
+
+    
+
+<!-- <div id="header">
         <h1 id="header-text">Blake's Neighborhood Map</h1>
     </div>
 
     <div id="map-canvas"></div>
     <div id="map-alt">
         <h2 id="map-alt-text">Sorry, we couldn't load the Google Map</h2>
-    </div>
+    </div> -->
     
-    <div id="search-column">
+<!--     <div id="search-column">
         <div id="search-header">
             <h2 id="search-header-text">Search POI's</h2>
         </div>
@@ -63,7 +85,7 @@
             <h3 id="streetview-header">Street View</h3><br>
             <img data-bind="attr: {src: streetViewImgSrc}" alt="Sorry, we couldn't load the Google StreetView">
         </div>
-    </div>
+    </div> -->
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWMekTXMrGU0DNq4CiFH5ZcFW8L_Wsm1A"></script>
     <script src="js/libs/knockout-3.3.0.js"></script>

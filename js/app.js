@@ -54,7 +54,7 @@ function AppViewModel() {
 
 	var self = this;
 
-	document.getElementById("map-alt").style.visibility = "hidden";
+	// document.getElementById("map-alt").style.visibility = "hidden";
 
 	this.poiList = ko.observableArray([home]);
 	this.searchInput = ko.observable('Type keywords here');

@@ -1,13 +1,25 @@
 
 * {
-	/*border: 1px solid red;*/
-    margin: 0;
-    padding: 0;
+	border: 1px solid red;
     font-family: Arial;
 }
 
+.map-container {
+    postition: relative;
+    height: 60%;
+}
 
-#header {
+.map-container #map-canvas {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*#header {
     position: absolute;
     left: 0;
     top: 0;
@@ -74,7 +86,7 @@
     right: 8px;
     top: 48px;
     bottom: 8px;
-/*    border: 1px solid red;*/
+    border: 1px solid red;
 }
 
 #search-field {
@@ -100,4 +112,4 @@
 
 #streetview-header {
     color: green;
-}
+}*/
