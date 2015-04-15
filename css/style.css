@@ -1,0 +1,103 @@
+
+* {
+	/*border: 1px solid red;*/
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+}
+
+
+#header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 960px;
+    height: 60px;
+    background-color: green;
+    text-align: center;
+}
+
+#header-text {
+    color: white;
+    line-height: 60px;
+    vertical-align: middle;
+}
+
+#map-canvas {
+    position: absolute;
+    left: 315px;
+    top: 75px;
+    width: 641px;
+    height: 643px;
+    border: 2px solid green;
+}
+
+#map-alt {
+    position: absolute;
+    left: 315px;
+    top: 75px;
+    width: 641px;
+    height: 643px;
+    text-align: center;
+}
+
+#map-alt-text {
+    line-height: 60px;
+    vertical-align: middle;
+}
+
+#search-column {
+    position: absolute;
+    left: 0px;
+    top: 75px;
+    width: 298px;
+    height: 645px;
+    border-right: 2px solid green;
+    border-bottom: 2px solid green;
+}
+
+#search-header {
+    background-color: green;
+    height: 40px;
+    text-align: center;
+}
+
+#search-header-text {
+    color: white;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#search-body {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    top: 48px;
+    bottom: 8px;
+/*    border: 1px solid red;*/
+}
+
+#search-field {
+    position: absolute;
+    left: 0px;
+    width: 214px;
+}
+
+#search-button {
+    position: absolute;
+    width: 60px;
+    right: 0px;
+}
+
+#search-results {
+    position absolute;
+    left: 0px;
+    right: 0px;
+    top: 60px;
+    bottom: 0px;
+    color: green;
+}
+
+#streetview-header {
+    color: green;
+}
