@@ -5,8 +5,8 @@
 }
 
 .map-container {
-    postition: relative;
-    height: 60%;
+    postition: absolute;
+    height: 400px;
 }
 
 .map-container #map-canvas {
