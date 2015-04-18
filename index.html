@@ -48,7 +48,7 @@
         <div class="row header">
             <h1 class="text-center header-text">Blake's Neighborhood Map</h1>
         </div>
-        <div class="row" id="main">
+        <div class="row">
             <div class="col-sm-3" id="search-container">
                 <div class="row header">
                     <h2 class="header-text">Search POIs</h2>
@@ -60,6 +60,13 @@
                     </form>
                 </div>
                 <div class="row">
+                    <ul id="search-results" data-bind="foreach: poiList">
+                        <li data-bind="text: name, click: $parent.changeCurrentPoi"></li><br>
+                    </ul>
+                    <h3>Click a POI to see its StreetView</h3>
+                </div>
+                <div class="row">
+                    <img data-bind="attr: {src: streetViewImgSrc}" alt="Sorry, we couldn't load the Google StreetView">
                 </div>
             </div>
             <div class="col-sm-9" id="map-container">
