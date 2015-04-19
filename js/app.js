@@ -91,6 +91,7 @@ function AppViewModel() {
 		self.currentPoi(p);
 	};
 
+
 	// find center of map
 	var latMin = pois[0].lat;
 	var latMax = pois[0].lat;
@@ -131,16 +132,53 @@ function AppViewModel() {
 					position: latLng,
 					map: self.map,
 					title: data[i].name,
-					icon: icons[0]
+					icon: data[i].icon
 				}
 			);
 
-			var p = data[i];
-			google.maps.event.addListener(marker, 'click', function() {
-			    self.changeCurrentPoi( p );
-			});
+			// var p = data[i];
+			// google.maps.event.addListener(marker, 'click', function() {
+
+				// set currentPoi to the marker clicked on
+			    // self.changeCurrentPoi( p );
+			    // console.log(self.currentPoi().name);
+
+			    // make only the clicked icon green
+			    // for (var m = 0; m < markers.length; m++) {
+			    // 	markers[m].setIcon( icons[0] );
+			    // }
+			    // marker.setIcon( icons[1] );
+			// });
 
 			markers.push( marker );
+
+			for (var m = 0; m < markers.length; m++) {
+				(function (_marker) {
+		            google.maps.event.addListener(markers[m], 'click', function(){
+		                console.log(_marker.title);
+		                
+		                _marker.setIcon( icons[1] );
+		            });
+		        })(markers[m]);
+			}
+
+
+
+// var td;
+// for (var t = 1; t < 8; t++){
+//     td = document.getElementById('td'+t);
+//     if (typeof window.addEventListener === 'function'){
+//         (function (_td) {
+//             td.addEventListener('click', function(){
+//                 console.log(_td);
+//             });
+//         })(td);
+//     }
+// }
+
+
+
+
 		}
 	}
 	this.initMarkers(self.poiList());
