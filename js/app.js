@@ -92,7 +92,7 @@ function AppViewModel() {
 	this.map = new google.maps.Map( document.getElementById( 'map-canvas' ),
 		{
 			center: { lat: latCenter, lng: lngCenter },
-		 	zoom: 13
+		 	zoom: 12
 		}
 	);
 
