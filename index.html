@@ -2,18 +2,18 @@
 
 
 <!-- Rubric
-- All application components render on-screen in a responsive manner, usable across modern desktop, tablet, and phone browsers
-- All application components function appropriately without error
-- Code is properly separated based upton Knockout's best practices
-    - following MVVM pattern
-    - avoiding updating the DOM manually
-    - using observables rather than forcing refreshes manually
+x All application components render on-screen in a responsive manner, usable across modern desktop, tablet, and phone browsers
+x All application components function appropriately without error
+x Code is properly separated based upton Knockout's best practices
+    x following MVVM pattern
+    x avoiding updating the DOM manually
+    x using observables rather than forcing refreshes manually
 - Application utilizes Google's Map API and at least one additional third-party "data API"
     - All data requests are retrieved in an asynchronous manner
     - in the event of a failed data retrieval, errors are handled gracefully
 - A geospatial/map representation of identified locations is provided
-    - runs error free
-    - is presented in a usable and responsive manner
+    x runs error free
+    x is presented in a usable and responsive manner
     - markers are clickable and change styling to indicate their selected state
 - Functionality providing additional data about a location is provided
     - runs error free
@@ -51,6 +51,7 @@
             </div>
         </div>
         <div class="row">
+            <!-- <h3 id="map-alt">Sorry, we couldn't access the Map.</h3> -->
             <div class="col-sm-12" id="map-container">
                 <div id="map-canvas" data-bind="html: map"></div>
             </div>

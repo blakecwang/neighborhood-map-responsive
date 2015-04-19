@@ -1,6 +1,7 @@
 
 //--------------------MODEL--------------------//
 
+// List of POIs + info
 var home = {
 	'name': 'Blake\'s House',
 	'lat': 32.759904, 
@@ -48,19 +49,21 @@ var pois = [
 
 
 
+
 //--------------------VIEWMODEL--------------------//
 
 function AppViewModel() {
 
+	// create a reference to the current 'this'
 	var self = this;
 
+	// hide error message
 	// document.getElementById("map-alt").style.visibility = "hidden";
 
+	// define some observables to force refreshes
 	this.poiList = ko.observableArray([home]);
 	this.searchInput = ko.observable('Type keywords here');
 	this.currentPoi = ko.observable(home);
-
-	
 	this.streetViewImgSrc = ko.computed(function() {
 		var street = self.currentPoi().street;
 		var city = self.currentPoi().city;
@@ -68,13 +71,15 @@ function AppViewModel() {
 		return 'https://maps.googleapis.com/maps/api/streetview?size=282x282&location="'+ address + '"';
     }, this);
 
-
+	// define function to change which POI is shown in streetview image
 	this.changeCurrentPoi = function(p) {
+		console.log("changeCurrentPoi was called");
+		console.log(self.currentPoi());
 		self.currentPoi(p);
 		console.log(self.currentPoi());
 	};
 
-	// find center
+	// find center of map
 	var latMin = pois[0].lat;
 	var latMax = pois[0].lat;
 	var lngMin = pois[0].lng;
@@ -96,6 +101,14 @@ function AppViewModel() {
 		}
 	);
 
+	this.highlightMarker = function(marker, highlight) {
+	    var color = "#FE7569";
+	    if (highlight) {
+	        color = "#0000FF";
+	    }
+	    marker.setImage(getIcon(color).image);
+	};
+
 	// init markers
 	var markers = [];
 	this.initMarkers = function(data) {
@@ -108,18 +121,25 @@ function AppViewModel() {
 		for ( var i = 0; i < data.length; i++ ) {
 
 			var latLng = new google.maps.LatLng( data[i].lat, data[i].lng );
-			markers.push( new google.maps.Marker(
+			var marker = new google.maps.Marker(
 				{
 					position: latLng,
 					map: self.map,
 					title: data[i].name
 				}
-			));			
+			);
+
+			var p = data[i];
+			google.maps.event.addListener(marker, 'click', function() {
+			    self.changeCurrentPoi( p );
+			});
+
+			markers.push( marker );
 		}
 	}
-	this.initMarkers(this.poiList());
+	this.initMarkers(self.poiList());
 
-
+	// define search function
 	this.searchPois = function() {
 
 		self.poiList.removeAll();
@@ -137,4 +157,5 @@ function AppViewModel() {
 	};
 }
 
+// apply all knockout bindings
 ko.applyBindings(new AppViewModel());
