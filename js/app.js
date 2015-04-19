@@ -2,13 +2,20 @@
 //--------------------MODEL--------------------//
 
 // List of POIs + info
+
+var icons = [
+	'img/frog_orange.png',
+	'img/frog_green.png'
+];
+
 var home = {
 	'name': 'Blake\'s House',
 	'lat': 32.759904, 
 	'lng': -117.127454,
 	'keywords': 'home, casa',
 	'street': '4542 Boundary St',
-	'city': 'San Diego'
+	'city': 'San Diego',
+	'icon': icons[0]
 };
 
 var pois = [
@@ -19,7 +26,8 @@ var pois = [
 		'lng': -117.1303769,
 		'keywords': 'bar, video',
 		'street': '3926 30th St',
-		'city': 'San Diego'
+		'city': 'San Diego',
+		'icon': icons[0]
 	},
 	{
 		'name': 'Soda Bar',
@@ -27,7 +35,8 @@ var pois = [
 		'lng': -117.1205925,
 		'keywords': 'bar, music',
 		'street': '3615 El Cajon Blvd',
-		'city': 'San Diego'
+		'city': 'San Diego',
+		'icon': icons[0]
 	},
 	{
 		'name': 'Seven Grand',
@@ -35,7 +44,8 @@ var pois = [
 		'lng': -117.1286325,
 		'keywords': 'bar, whiskey',
 		'street': '3054 University Ave',
-		'city': 'San Diego'
+		'city': 'San Diego',
+		'icon': icons[0]
 	},
 	{
 		'name': 'Rigoberto\'s Taco Shop',
@@ -43,7 +53,8 @@ var pois = [
 		'lng': -117.0858673,
 		'keywords': 'food, mexican',
 		'street': '2704 University Ave',
-		'city': 'San Diego'
+		'city': 'San Diego',
+		'icon': icons[0]
 	}
 ];
 
@@ -64,6 +75,9 @@ function AppViewModel() {
 	this.poiList = ko.observableArray([home]);
 	this.searchInput = ko.observable('Type keywords here');
 	this.currentPoi = ko.observable(home);
+	this.currentName = ko.computed(function() {
+		return self.currentPoi().name;
+	}, this);
 	this.streetViewImgSrc = ko.computed(function() {
 		var street = self.currentPoi().street;
 		var city = self.currentPoi().city;
@@ -71,12 +85,10 @@ function AppViewModel() {
 		return 'https://maps.googleapis.com/maps/api/streetview?size=282x282&location="'+ address + '"';
     }, this);
 
+
 	// define function to change which POI is shown in streetview image
 	this.changeCurrentPoi = function(p) {
-		console.log("changeCurrentPoi was called");
-		console.log(self.currentPoi());
 		self.currentPoi(p);
-		console.log(self.currentPoi());
 	};
 
 	// find center of map
@@ -101,13 +113,6 @@ function AppViewModel() {
 		}
 	);
 
-	this.highlightMarker = function(marker, highlight) {
-	    var color = "#FE7569";
-	    if (highlight) {
-	        color = "#0000FF";
-	    }
-	    marker.setImage(getIcon(color).image);
-	};
 
 	// init markers
 	var markers = [];
@@ -125,7 +130,8 @@ function AppViewModel() {
 				{
 					position: latLng,
 					map: self.map,
-					title: data[i].name
+					title: data[i].name,
+					icon: icons[0]
 				}
 			);
 
