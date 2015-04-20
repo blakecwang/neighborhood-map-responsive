@@ -119,11 +119,13 @@ function AppViewModel() {
 	var markers = [];
 	this.initMarkers = function(data) {
 
+		// clear any old markers
 		for ( var i = 0; i < markers.length; i++) {
 			markers[i].setMap(null);
 		}
 		markers.length = 0;
 
+		// add some new markers
 		for ( var i = 0; i < data.length; i++ ) {
 
 			var latLng = new google.maps.LatLng( data[i].lat, data[i].lng );
@@ -151,34 +153,26 @@ function AppViewModel() {
 			// });
 
 			markers.push( marker );
+		}
 
-			for (var m = 0; m < markers.length; m++) {
-				(function (_marker) {
-		            google.maps.event.addListener(markers[m], 'click', function(){
-		                console.log(_marker.title);
-		                
-		                _marker.setIcon( icons[1] );
-		            });
-		        })(markers[m]);
-			}
+		// add click listeners to the markers
+		for (var m = 0; m < markers.length; m++) {
+			(function (_marker, _data) {
+	            google.maps.event.addListener(markers[m], 'click', function(){
 
+	            	// turn selected icon green
+	                for (var n = 0; n < markers.length; n++) {
+	                	markers[n].setIcon( icons[0] );
+	                }
+	                _marker.setIcon( icons[1] );
 
+	                // change currentPoi
+	                self.changeCurrentPoi( _data );
+	                // console.log( data[1] );
+	                // console.log( _data );
+	            });
 
-// var td;
-// for (var t = 1; t < 8; t++){
-//     td = document.getElementById('td'+t);
-//     if (typeof window.addEventListener === 'function'){
-//         (function (_td) {
-//             td.addEventListener('click', function(){
-//                 console.log(_td);
-//             });
-//         })(td);
-//     }
-// }
-
-
-
-
+	        })(markers[m], data[m]);
 		}
 	}
 	this.initMarkers(self.poiList());
