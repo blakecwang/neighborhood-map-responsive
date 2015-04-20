@@ -3,10 +3,24 @@
 
 // List of POIs + info
 
-var icons = [
-	'img/frog_orange.png',
-	'img/frog_green.png'
-];
+
+
+var pinColor1 = 'FF0000';
+var pinIcon1 = new google.maps.MarkerImage(
+    "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor1,
+    null,
+    null,
+    null,
+    new google.maps.Size(21, 34));
+var pinColor2 = '00FF00';
+var pinIcon2 = new google.maps.MarkerImage(
+    "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor2,
+    null,
+    null,
+    null,
+    new google.maps.Size(42, 68));
+var icons = [ pinIcon1, pinIcon2 ];
+
 
 var home = {
 	'name': 'Blake\'s House',
@@ -135,6 +149,7 @@ function AppViewModel() {
 					map: self.map,
 					title: data[i].name,
 					icon: data[i].icon
+					// icon: pinIcon
 				}
 			);
 			markers.push( marker );
