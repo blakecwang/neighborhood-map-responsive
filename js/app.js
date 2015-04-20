@@ -89,6 +89,7 @@ function AppViewModel() {
 	// define function to change which POI is shown in streetview image
 	this.changeCurrentPoi = function(p) {
 		self.currentPoi(p);
+		self.setMarkerColor();
 	};
 
 
@@ -141,24 +142,37 @@ function AppViewModel() {
 
 		// add click listeners to the markers
 		for (var m = 0; m < markers.length; m++) {
-			(function (_marker, _data) {
+			(function ( _data ) {
 	            google.maps.event.addListener(markers[m], 'click', function(){
 
 	            	// turn selected icon green
-	                for (var n = 0; n < markers.length; n++) {
-	                	markers[n].setIcon( icons[0] );
-	                }
-	                _marker.setIcon( icons[1] );
+	                // for (var n = 0; n < markers.length; n++) {
+	                // 	markers[n].setIcon( icons[0] );
+	                // }
+	                // _marker.setIcon( icons[1] );
 
 	                // change currentPoi
 	                self.changeCurrentPoi( _data );
 	            });
-	        })(markers[m], data[m]);
+	        })( data[m] );
 		}
 	}
 	this.initMarkers(self.poiList());
 
-	
+	// set marker color
+	this.setMarkerColor = function() {
+		for (var i = 0; i < markers.length; i++) {
+			if (self.currentPoi().name === markers[i].title) {
+				markers[i].setIcon( icons[1] );
+			} else {
+				markers[i].setIcon( icons[0] );
+			}
+		}
+	};
+	this.setMarkerColor();
+
+
+
 
 	// define search function
 	this.searchPois = function() {
