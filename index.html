@@ -8,25 +8,25 @@ x Code is properly separated based upton Knockout's best practices
     x following MVVM pattern
     x avoiding updating the DOM manually
     x using observables rather than forcing refreshes manually
-- Application utilizes Google's Map API and at least one additional third-party "data API"
-    - All data requests are retrieved in an asynchronous manner
-    - in the event of a failed data retrieval, errors are handled gracefully
-- A geospatial/map representation of identified locations is provided
+x Application utilizes Google's Map API and at least one additional third-party "data API"
+    x All data requests are retrieved in an asynchronous manner
+    x in the event of a failed data retrieval, errors are handled gracefully
+x A geospatial/map representation of identified locations is provided
     x runs error free
     x is presented in a usable and responsive manner
-    - markers are clickable and change styling to indicate their selected state
-- Functionality providing additional data about a location is provided
-    - runs error free
-    - is presented in a usable and responsive manner
-- A search function is provided
-    - runs error free
-    - is presented in a usable and responsive manner
-- A list view or some other variation of browsing the content (beyond search/map), is provided
-    - runs error free
-    - is presented in a usable and responsive manner
-- Code is ready for personal review and neatly formatted
-- Comments are present and effectively explain longer code procedures
-- A README file is included detailing all steps required to successfully run the application -->
+    x markers are clickable and change styling to indicate their selected state
+x Functionality providing additional data about a location is provided
+    x runs error free
+    x is presented in a usable and responsive manner
+x A search function is provided
+    x runs error free
+    x is presented in a usable and responsive manner
+x A list view or some other variation of browsing the content (beyond search/map), is provided
+    x runs error free
+    x is presented in a usable and responsive manner
+x Code is ready for personal review and neatly formatted
+x Comments are present and effectively explain longer code procedures
+x A README file is included detailing all steps required to successfully run the application -->
 
 <!-- GoogleMaps API Key  AIzaSyBWMekTXMrGU0DNq4CiFH5ZcFW8L_Wsm1A -->
 
@@ -35,12 +35,14 @@ x Code is properly separated based upton Knockout's best practices
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Blake's Neighborhood Map</title>
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
 
@@ -53,6 +55,7 @@ x Code is properly separated based upton Knockout's best practices
         <div class="row">
             <!-- <h3 id="map-alt">Sorry, we couldn't access the Map.</h3> -->
             <div class="col-sm-12" id="map-container">
+                <h3 id="map-alt">Sorry, we couldn't find the map!</h3>
                 <div id="map-canvas" data-bind="html: map"></div>
             </div>
         </div>

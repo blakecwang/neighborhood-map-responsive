@@ -3,8 +3,6 @@
 
 // List of POIs + info
 
-
-
 var pinColor1 = 'FF0000';
 var pinIcon1 = new google.maps.MarkerImage(
     "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor1,
@@ -20,7 +18,6 @@ var pinIcon2 = new google.maps.MarkerImage(
     null,
     new google.maps.Size(42, 68));
 var icons = [ pinIcon1, pinIcon2 ];
-
 
 var home = {
 	'name': 'Blake\'s House',
@@ -82,9 +79,6 @@ function AppViewModel() {
 	// create a reference to the current 'this'
 	var self = this;
 
-	// hide error message
-	// document.getElementById("map-alt").style.visibility = "hidden";
-
 	// define some observables to force refreshes
 	this.poiList = ko.observableArray([home]);
 	this.searchInput = ko.observable('Type keywords here');
@@ -129,12 +123,16 @@ function AppViewModel() {
 		}
 	);
 
+	// gracefully handle failed request
+	var parent = document.getElementById("map-container");
+	var child = document.getElementById("map-alt");
+	parent.removeChild(child);
 
 	// init markers
 	var markers = [];
 	this.initMarkers = function(data) {
 
-		// clear any old markers
+		// clear old markers
 		for ( var i = 0; i < markers.length; i++) {
 			markers[i].setMap(null);
 		}
@@ -149,7 +147,6 @@ function AppViewModel() {
 					map: self.map,
 					title: data[i].name,
 					icon: data[i].icon
-					// icon: pinIcon
 				}
 			);
 			markers.push( marker );
@@ -159,14 +156,6 @@ function AppViewModel() {
 		for (var m = 0; m < markers.length; m++) {
 			(function ( _data ) {
 	            google.maps.event.addListener(markers[m], 'click', function(){
-
-	            	// turn selected icon green
-	                // for (var n = 0; n < markers.length; n++) {
-	                // 	markers[n].setIcon( icons[0] );
-	                // }
-	                // _marker.setIcon( icons[1] );
-
-	                // change currentPoi
 	                self.changeCurrentPoi( _data );
 	            });
 	        })( data[m] );
@@ -185,8 +174,6 @@ function AppViewModel() {
 		}
 	};
 	this.setMarkerColor();
-
-
 
 
 	// define search function
