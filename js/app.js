@@ -127,7 +127,6 @@ function AppViewModel() {
 
 		// add some new markers
 		for ( var i = 0; i < data.length; i++ ) {
-
 			var latLng = new google.maps.LatLng( data[i].lat, data[i].lng );
 			var marker = new google.maps.Marker(
 				{
@@ -137,21 +136,6 @@ function AppViewModel() {
 					icon: data[i].icon
 				}
 			);
-
-			// var p = data[i];
-			// google.maps.event.addListener(marker, 'click', function() {
-
-				// set currentPoi to the marker clicked on
-			    // self.changeCurrentPoi( p );
-			    // console.log(self.currentPoi().name);
-
-			    // make only the clicked icon green
-			    // for (var m = 0; m < markers.length; m++) {
-			    // 	markers[m].setIcon( icons[0] );
-			    // }
-			    // marker.setIcon( icons[1] );
-			// });
-
 			markers.push( marker );
 		}
 
@@ -168,14 +152,13 @@ function AppViewModel() {
 
 	                // change currentPoi
 	                self.changeCurrentPoi( _data );
-	                // console.log( data[1] );
-	                // console.log( _data );
 	            });
-
 	        })(markers[m], data[m]);
 		}
 	}
 	this.initMarkers(self.poiList());
+
+	
 
 	// define search function
 	this.searchPois = function() {
